@@ -63,7 +63,7 @@ def predict(data: PatientData) -> dict[str, float | int | str | bool]:
 
 # ================= NODEMCU URL =================
 
-NODEMCU_URL = "http://192.168.0.104/data"
+NODEMCU_URL = "http://10.199.195.138/data"
 
 # ================= AUTO PREDICTION =================
 
@@ -73,7 +73,7 @@ def auto_predict():
         raise HTTPException(status_code=500, detail=f"Model not loaded: {load_error}")
 
     try:
-        response = requests.get(NODEMCU_URL, timeout=3)
+        response = requests.get(NODEMCU_URL, timeout=20)
         sensor = response.json()
     except Exception:
         return {
@@ -90,7 +90,7 @@ def auto_predict():
     heart_rate = float(sensor.get("heart_rate", 0))
     spo2 = float(sensor.get("spo2", 0))
 
-    if heart_rate == 0 or spo2 == 0:
+    if heart_rate < 40 or spo2 < 70:
         return {
             "sensor_data": sensor,
             "prediction": {
@@ -103,19 +103,19 @@ def auto_predict():
         }
 
     payload = {
-        "Age": 45,
-        "Sex": 1,
+        "Age": 22,
+        "Sex": 0,
         "Chest_pain_type": 2,
-        "BP": 120,
-        "Cholesterol": 200,
-        "FBS_over_120": 0,
-        "EKG_results": 1,
+        "BP": 110,
+        "Cholesterol":180 ,
+        "FBS_over_120": 80, 
+        "EKG_results": 1, #ectrocardiogram to detect heart attack, irregular heartbeat, and other heart conditions
         "Max_HR": heart_rate,
         "Exercise_angina": 0,
-        "ST_depression": 1.0,
-        "Slope_of_ST": 2,
+        "ST_depression": 0.0,
+        "Slope_of_ST": 0,
         "Number_of_vessels_fluro": 0,
-        "Thallium": 3
+        "Thallium": 1
     }
 
     result = predictor.predict(payload)

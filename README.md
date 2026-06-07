@@ -176,6 +176,7 @@ Run the API 🚀:
 ```bash
 uvicorn app:app --reload --port 8000
 ```
+or .... python -m uvicorn app:app --reload
 
 Test ✅:
 
@@ -243,6 +244,7 @@ Contributions are welcome! 🎉 If you’d like to improve UI/UX, add validation
 ## 👩‍💻 Author
 
 - **Snigdha Datta** (GitHub: `@SnigdhaDatta`) ✨
+
 
 ---
 
