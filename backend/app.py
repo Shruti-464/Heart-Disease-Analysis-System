@@ -73,7 +73,7 @@ def auto_predict():
         raise HTTPException(status_code=500, detail=f"Model not loaded: {load_error}")
 
     try:
-        response = requests.get(NODEMCU_URL, timeout=20)
+        response = requests.get(NODEMCU_URL, timeout=20) # change the timeout value if needed for get the response from nodemcu ------------------
         sensor = response.json()
     except Exception:
         return {

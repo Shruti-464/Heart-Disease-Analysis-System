@@ -244,6 +244,11 @@ Contributions are welcome! 🎉 If you’d like to improve UI/UX, add validation
 ## 👩‍💻 Author
 
 - **Snigdha Datta** (GitHub: `@SnigdhaDatta`) ✨
+- **Shruti KundU** (GitHub: `@Shruti-464`) ✨
+- **Shreya Das** 
+- **Soumita Sasmal** 
+- **Soham Naskar**
+
 
 
 ---
